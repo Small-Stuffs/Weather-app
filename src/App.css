@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #100e1d;
+  color: #e7e7eb;
+}
+main {
+  width: 100vw;
+}
+
+button {
+  padding: 10px;
+  border: none;
+}
+li {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  /* background: red; */
+}
+.clouds {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('./images/Cloud-background.png');
+  background-repeat: no-repeat;
+  background-size: 145%;
+  background-position: -75px 0;
+  opacity: 0.05;
+}
+.cel-fah {
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+.cel-fah span {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #6e707a;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.compass i {
+  margin-right: 10px;
+}
+.cel {
+  margin-right: 10px;
+}
+.deg,
+.type {
+  font-size: 3rem;
+  color: #a09fb1;
+}
+.active {
+  background: red;
+}
+/* ANIMATIONS */
+.slideIn {
+  animation: slideIn 0.5s ease-in forwards;
+}
+
+.slideOut {
+  animation: slideOut 0.5s ease-in forwards;
+}
+
+@keyframes slideOut {
+  0% {
+    left: -350px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -350px;
+  }
+}
+@media screen and (max-width: 660px) {
+  @keyframes slideOut {
+    0% {
+      left: -660px;
+    }
+    100% {
+      left: 0;
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -660px;
+    }
+  }
+}
