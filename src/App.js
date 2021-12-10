@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import Main from './components/Main';
-import Search from './components/Search';
+import Page from './components/Page';
+
 function App() {
   return (
     <div className=" App">
-      <Main />
-      <Search />
+      <Page />
     </div>
   );
 }

@@ -1,10 +1,27 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import SearchList from './SearchList';
 
 import { SearchContainer } from '../styles/Search.styles';
 
+import useForecast from '../hooks/useForecast';
+
+const locationList = [
+  {
+    woeid: '355',
+    title: 'manila',
+  },
+  {
+    woeid: '5153',
+    title: 'berlin',
+  },
+];
+
 const Search = ({ setWoeid }) => {
+  // input
   const [text, setText] = useState('');
-  const [locations, setLocations] = useState([]);
+  //location
+  const [locations, setLocations] = useState(locationList);
 
   const search = () => {
     // setLoading(true);
@@ -21,12 +38,37 @@ const Search = ({ setWoeid }) => {
       .catch('err');
   };
 
-  const change = (woeid) => {
-    setWoeid(woeid);
-    const search = document.querySelector('.search');
-    search.classList.remove('slideOut');
-    search.classList.add('slideIn');
+  const addLocation = (location) => {
+    const newLocation = [location, ...locations];
+    setLocations(newLocation);
+    console.log(...locations);
   };
+  function handleSubmit(e) {
+    e.preventDefault();
+    setText('');
+
+    // setWoeid.onSubmit({
+    //   id: 100,
+    //   text: text,
+    // });
+  }
+
+  function handleChange(e) {
+    setText(e.target.value);
+  }
+
+  // function handleAdd() {
+  //   // const newLocation = locations.concat({ text, id: uuidv4() });
+  //   // setLocations(newLocation);
+  //   setText('');
+  // }
+
+  // const change = (woeid) => {
+  //   // setWoeid(woeid);
+  //   const search = document.querySelector('.search');.
+  //   search.classList.remove('slideOut');
+  //   search.classList.add('slideIn');
+  // };
 
   //OPEN CLOSE SEARCHBAR
   const close = () => {
@@ -42,7 +84,7 @@ const Search = ({ setWoeid }) => {
             <div className=" close" onClick={close}>
               <i className="fas fa-times" />
             </div>
-            <form action="" onSubmit={(e) => e.preventDefault()}>
+            <form action="" onSubmit={handleSubmit}>
               <div className="cover">
                 <i className="fas fa-search" />
                 <input
@@ -50,22 +92,15 @@ const Search = ({ setWoeid }) => {
                   placeholder="Search location"
                   required
                   value={text}
-                  onChange={(e) => setText(e.target.value)}
+                  onChange={handleChange}
                 />
               </div>
-              <button type="submit" onClick={search}>
+              <button type="submit" onClick={search} onSubmit={handleSubmit}>
                 Search
               </button>
             </form>
           </div>
-          <ul>
-            {locations.map((location) => (
-              <li key={location.woeid} onClick={() => change(location.woeid)}>
-                {location.title}
-                <i className="fas fa-angle-right"></i>
-              </li>
-            ))}
-          </ul>
+          <SearchList />
         </div>
       </SearchContainer>
     </>
